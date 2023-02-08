@@ -1,15 +1,34 @@
-import { Stack, StackProps } from '@aws-cdk/core'
-import * as cdk from '@aws-cdk/core'
-import * as lambda from "@aws-cdk/aws-lambda"
-import * as dynamodb from "@aws-cdk/aws-dynamodb"
-import * as apigateway from "@aws-cdk/aws-apigateway"
+import * as apigateway from 'aws-cdk-lib/aws-apigateway';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as cdk from 'aws-cdk-lib';
+import * as path from 'path';
 
-export class CdkServerlessStack extends Stack {
-  constructor(scope: cdk.Construct, id: string, props?: StackProps) {
+export class CdkStarterStack extends cdk.Stack {
+  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const table = new dynamodb.Table(this, "Hello", {
-      partitionKey: { name: "name", type: dynamodb.AttributeType.STRING }
-    })
+    const api = new apigateway.RestApi(this, 'api', {
+      description: 'example api gateway',
+      deployOptions: {
+        stageName: 'dev',
+      },
+
+      defaultCorsPreflightOptions: {
+        allowHeaders: [
+          'Content-Type',
+          'X-Amz-Date',
+          'Authorization',
+          'X-Api-Key',
+        ],
+        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        allowCredentials: true,
+        allowOrigins: ['http://localhost:3000'],
+      },
+    });
+
+
+    new cdk.CfnOutput(this, 'apiUrl', {value: api.url});
+
+
   }
 }
