@@ -3,10 +3,6 @@ import * as cdk from 'aws-cdk-lib';
 import {CdkStarterStack} from '../lib/cdk-serverless-stack';
 
 const app = new cdk.App();
-new CdkStarterStack(app, 'cdk-stack', {
-  stackName: 'cdk-stack',
-  env: {
-    region: process.env.CDK_DEFAULT_REGION,
-    account: process.env.CDK_DEFAULT_ACCOUNT,
-  },
+new CdkStarterStack(app, 'CdkStarterStack', {
+  stackName: 'CdkStarterStack',
 });
