@@ -11,3 +11,6 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `cdk deploy`      deploy this stack to your default AWS account/region
 * `cdk diff`        compare deployed stack with current state
 * `cdk synth`       emits the synthesized CloudFormation template
+
+
+Once you have saved the file, you can use the AWS CLI or the AWS Management Console to update your Lambda function with the new code. After the update is complete, you can call the API endpoint associated with the Lambda function to fetch data from the ECS cluster.
