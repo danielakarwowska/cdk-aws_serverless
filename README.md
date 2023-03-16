@@ -14,3 +14,4 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 
 Once you have saved the file, you can use the AWS CLI or the AWS Management Console to update your Lambda function with the new code. After the update is complete, you can call the API endpoint associated with the Lambda function to fetch data from the ECS cluster.
+This code will use the AWS.ECS SDK to fetch data about the services running in the ECS cluster. It will return a JSON response containing information such as the name of the cluster, the name of each service, the number of desired and running tasks for each service, and the CPU and memory usage for each service.
